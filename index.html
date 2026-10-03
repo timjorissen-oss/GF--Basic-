@@ -162,7 +162,20 @@ function ensure(id){
 }
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function exact(a,b){return a.length===b.length && a.every(x=>b.includes(x))}
-function show(id){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo(0,0)}
+function show(id){
+ document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ window.scrollTo(0,0);
+}
+function goHome(){
+ stopTimer();
+ state.mode="learning";
+ state.list=[];
+ state.index=0;
+ state.checked=false;
+ updateHome();
+ show("home");
+}
 function stopTimer(){if(state.timerId){clearInterval(state.timerId);state.timerId=null}}
 function formatTime(sec){let m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")}
 function updateTimer(){
